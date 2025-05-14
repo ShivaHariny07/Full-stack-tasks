@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <form action="/submit"></form>
+    <h1 style="text-align: center;"><u>Student data form</u></h1>    
+    <br>
+    <label for="name"><b>Name:</b></label>
+    <input type="text" style="text-align: center;" required>
+    <br>
+    <br>
+    <label><b>Gender:</b></label>
+    <br>
+    <br>
+    <input type="radio" name="gender" value="male" id="male" required>
+    <label for="male">Male</label>
+    <br>
+    <input type="radio" name="gender" value="female" id="female">
+    <label for="female">Female</label>
+    <br>
+    <input type="radio" name="gender" value="other" id="other">
+    <label for="other">Other</label>
+    <br>
+    <br>
+    <label for="date of birth"><b>Date of Birth:</b></label>
+    <input type="text" required>
+    <br>
+    <br>
+    <label for="name"><b>Father's name:</b></label>
+    <input type="text" style="text-align: center;" required>
+    <br>
+    <br>
+    <label for="occupation"><b>Father's Occupation:</b></label>
+    <select name="Father's Occupation:" id="Father's Occupation:" required>   
+    <option value="">Select</option>
+    <option value="doctor">Doctor</option> 
+    <option value="engineer">Engineer</option> 
+    <option value="Business">Business</option> 
+    <option value="government offical">Government offical</option>
+    <option value="others">Others</option>
+    </select>
+    <br>
+    <br>
+    <label for="Others"><b>If other please mention:</b></label>
+    <input type="text">
+    <br>
+    <br>
+    <label for="email"><b>Email:</b></label>
+    <input type="email">
+    <br>
+    <br>
+    <label for="phone number"><b>Phone number:</b></label>
+    <input type="number" min="7000000000" max="9999999999" required>
+    <br>
+    <br>
+    <label for="nationality"><b>Nationality:</b></label>
+    <input type="text" value="Indian" readonly>
+    <br>
+    <br>
+    <label for="marks"><b>12th mark:</b></label>
+    <input type="number" min="300" max="600" required>
+    <br>
+    <br>
+    <label for="group"><b>Specify major subjects:</b></label>
+    <br>
+    <br>
+    <input type="radio" name="group" value="mathematics biology" id="mathematics biology" required>
+    <label for="male">Mathematics biology</label>
+    <br> 
+    <input type="radio" name="group" value="mathematics computer science" id="mathematics computer science" required>
+    <label for="male">Mathematics computer science</label>
+    <br> 
+    <input type="radio" name="group" value="commerce" id="commerce" required>
+    <label for="male">Commerce</label>
+    <br> 
+    <input type="radio" name="group" value="Business mathematics" id="Business mathematics" required>
+    <label for="male">Business mathematics</label>
+    <br> 
+    <br>
+    <label for="hobbies"><b>Hobbies:</b></label>
+    <br>
+    <br>
+    <input type="checkbox" name="hobbies" value="reading" id="reading">
+    <label for="reading">Reading</label>
+    <br>
+    <input type="checkbox" name="hobbies" value="drawing" id="drawing">
+    <label for="drawing">Drawing</label>
+    <br>
+    <input type="checkbox" name="hobbies" value="singing" id="singing">
+    <label for="singing">Singing</label>
+    <br>
+    <input type="checkbox" name="hobbies" value="dancing" id="dancing">
+    <label for="dancing">Dancing</label>
+    <br>
+    <input type="checkbox" name="hobbies" value="others" id="others">
+    <label for="others">Others</label>
+    <br>
+    <br>
+    <label for="others"><b>Please describe your other hobbies:</b></label>
+    <br>
+    <br>
+    <textarea name="describe your hobbies" id="hobbies" rows="7" cols="50" placeholder="Type here..."></textarea>
+    <br>
+    <br>
+    <input type="submit" value="Submit Form"> 
+</body>
+</html>
