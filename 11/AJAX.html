@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX with XML - Multiple Users (Dynamic)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the Inter font and basic body styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light grey background */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to the top */
+            min-height: 100vh; /* Full viewport height */
+            padding: 2rem; /* Padding around the content */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+        .container {
+            width: 100%;
+            max-width: 800px; /* Max width for the content area */
+            background-color: #ffffff; /* White background for the main container */
+            padding: 2rem;
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        .user-card {
+            border: 1px solid #e2e8f0; /* Light border for cards */
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem; /* Slightly more rounded corners for cards */
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Very subtle shadow for cards */
+        }
+        .user-card:last-child {
+            margin-bottom: 0; /* No margin for the last card */
+        }
+        .user-info span {
+            font-weight: normal; /* Make the actual info normal weight */
+        }
+        /* Utility class to hide elements */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">AJAX with XML - Multiple Users</h1>
+
+        <div class="mb-6 flex justify-center">
+            <button id="loadUsersBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+                Load Users (AJAX + XML)
+            </button>
+        </div>
+
+        <div id="user-list" class="space-y-4">
+            <div class="user-card">
+                <p class="text-lg text-gray-700 mb-1 user-id hidden">
+                    <span class="font-semibold">ID:</span> <span>1</span>
+                </p>
+                <p class="text-lg text-gray-700 mb-1 user-name">
+                    <span class="font-semibold">Name:</span> <span>John Doe</span>
+                </p>
+                <p class="text-lg text-gray-700 user-email hidden">
+                    <span class="font-semibold">Email:</span> <span>john@example.com</span>
+                </p>
+            </div>
+
+            <div class="user-card">
+                <p class="text-lg text-gray-700 mb-1 user-id hidden">
+                    <span class="font-semibold">ID:</span> <span>2</span>
+                </p>
+                <p class="text-lg text-gray-700 mb-1 user-name">
+                    <span class="font-semibold">Name:</span> <span>Jane Smith</span>
+                </p>
+                <p class="text-lg text-gray-700 user-email hidden">
+                    <span class="font-semibold">Email:</span> <span>jane@example.com</span>
+                </p>
+            </div>
+
+            <div class="user-card">
+                <p class="text-lg text-gray-700 mb-1 user-id hidden">
+                    <span class="font-semibold">ID:</span> <span>3</span>
+                </p>
+                <p class="text-lg text-gray-700 mb-1 user-name">
+                    <span class="font-semibold">Name:</span> <span>Mike Johnson</span>
+                </p>
+                <p class="text-lg text-gray-700 user-email hidden">
+                    <span class="font-semibold">Email:</span> <span>mike@example.com</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get the button element by its ID
+        const loadUsersButton = document.getElementById('loadUsersBtn');
+
+        // Add an event listener to the button
+        loadUsersButton.addEventListener('click', () => {
+            // Get all elements with the class 'user-id'
+            const userIds = document.querySelectorAll('.user-id');
+            // Get all elements with the class 'user-email'
+            const userEmails = document.querySelectorAll('.user-email');
+
+            // Iterate over each user ID element and remove the 'hidden' class
+            userIds.forEach(idElement => {
+                idElement.classList.remove('hidden');
+            });
+
+            // Iterate over each user email element and remove the 'hidden' class
+            userEmails.forEach(emailElement => {
+                emailElement.classList.remove('hidden');
+            });
+
+            // Optionally, disable the button after it's clicked once
+            loadUsersButton.disabled = true;
+            loadUsersButton.textContent = 'Users Loaded';
+            loadUsersButton.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+            loadUsersButton.classList.add('bg-gray-400', 'cursor-not-allowed');
+        });
+    </script>
+</body>
+</html>
