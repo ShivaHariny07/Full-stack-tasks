@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chennai Time</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .clock {
+      background: #fff;
+      padding: 40px 60px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      font-size: 2rem;
+      color: #222;
+      text-align: center;
+    }
+
+    .label {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="clock">
+  <div class="label">Chennai, Tamil Nadu Time (IST)</div>
+  <div id="chennaiTime">Loading...</div>
+</div>
+
+<script>
+  function updateChennaiTime() {
+    const now = new Date();
+    const options = {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    };
+    const timeString = now.toLocaleTimeString('en-IN', options);
+    document.getElementById('chennaiTime').textContent = timeString;
+  }
+
+  updateChennaiTime(); // initial call
+  setInterval(updateChennaiTime, 1000); // update every second
+</script>
+
+</body>
+</html>

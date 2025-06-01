@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fact Cards</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 30px;
+      margin: 0;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      max-width: 300px;
+      width: 90%;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    .facts {
+      display: none;
+      margin-top: 15px;
+      padding-left: 20px;
+    }
+
+    .facts li {
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 400px) {
+      .card h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" onclick="toggleFacts('sunFacts')">
+    <h2 style="text-align: center;">The Sun ☀️</h2>
+    <ul class="facts" id="sunFacts">
+      <li>It's a star.</li>
+      <li>4.6 billion years old.</li>
+      <li>Center of our solar system.</li>
+    </ul>
+  </div>
+
+  <div class="card" onclick="toggleFacts('moonFacts')">
+    <h2 style="text-align: center;">The Moon 🌙</h2>
+    <ul class="facts" id="moonFacts">
+      <li>It controls tides on Earth.</li>
+      <li>It reflects sunlight.</li>
+      <li>Humans landed in 1969.</li>
+    </ul>
+  </div>
+
+  <div class="card" onclick="toggleFacts('oceanFacts')">
+    <h2 style="text-align: center;">The Ocean 🌊</h2>
+    <ul class="facts" id="oceanFacts">
+      <li>Covers 70% of Earth.</li>
+      <li>Home to millions of species.</li>
+      <li>Deepest part is the Mariana Trench.</li>
+    </ul>
+  </div>
+
+  <script>
+    function toggleFacts(id) {
+      const facts = document.getElementById(id);
+      facts.style.display = facts.style.display === "block" ? "none" : "block";
+    }
+  </script>
+
+</body>
+</html>
