@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Methods Demo (Vanilla JS)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the Inter font and basic body styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light grey background */
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: flex-start; /* Align to the top */
+            align-items: center; /* Center horizontally */
+            min-height: 100vh; /* Full viewport height */
+            padding: 2rem; /* Padding around the content */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+        .container {
+            width: 100%;
+            max-width: 900px; /* Max width for the content area */
+            background-color: #ffffff; /* White background for the main container */
+            padding: 2rem;
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-align: center;
+        }
+        .demo-box {
+            background-color: #a7d9f2; /* Light blue background as in the image */
+            padding: 2rem;
+            margin-top: 2rem;
+            border-radius: 0.5rem;
+            min-width: 200px; /* Minimum width for the box */
+            min-height: 120px; /* Minimum height for the box */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            /* Transitions for smooth effects */
+            transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+            overflow: hidden; /* Important for slide up/down */
+        }
+        /* Class for adding a border */
+        .bordered {
+            border: 4px solid #ef4444; /* Red border */
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8">jQuery Methods Demo</h1>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <button id="hideBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                Hide
+            </button>
+            <button id="showBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                Show
+            </button>
+            <button id="toggleBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                Toggle
+            </button>
+            <button id="fadeOutBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                Fade Out
+            </button>
+            <button id="slideUpBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                Slide Up
+            </button>
+            <button id="addClassBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                Add Class
+            </button>
+            <button id="changeColorBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                Change Color
+            </button>
+            <button id="changeTextBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out">
+                Change Text
+            </button>
+        </div>
+
+        <div id="demoBox" class="demo-box">
+            hiii have a great day
+        </div>
+    </div>
+
+    <script>
+        // Get references to the demo box and all buttons
+        const demoBox = document.getElementById('demoBox');
+        const hideBtn = document.getElementById('hideBtn');
+        const showBtn = document.getElementById('showBtn');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const fadeOutBtn = document.getElementById('fadeOutBtn');
+        const slideUpBtn = document.getElementById('slideUpBtn');
+        const addClassBtn = document.getElementById('addClassBtn');
+        const changeColorBtn = document.getElementById('changeColorBtn');
+        const changeTextBtn = document.getElementById('changeTextBtn');
+
+        // Store the original height for slide up/down animation
+        let originalHeight = demoBox.offsetHeight; // Get initial height
+
+        // Function to reset box properties for 'show' or 'initial state'
+        function resetBox() {
+            demoBox.style.display = 'flex'; // Ensure it's visible
+            demoBox.style.opacity = '1'; // Ensure full opacity
+            demoBox.style.maxHeight = originalHeight + 'px'; // Restore max height
+            demoBox.classList.remove('bordered'); // Remove added class if present
+            demoBox.style.backgroundColor = '#a7d9f2'; // Reset background color
+            demoBox.textContent = 'hiii have a great day'; // Reset text to initial state
+        }
+
+        // Event listener for the 'Hide' button
+        hideBtn.addEventListener('click', () => {
+            demoBox.style.display = 'none'; // Simply hide the element
+        });
+
+        // Event listener for the 'Show' button
+        showBtn.addEventListener('click', () => {
+            resetBox(); // Reset all properties to show the box
+        });
+
+        // Event listener for the 'Toggle' button
+        toggleBtn.addEventListener('click', () => {
+            if (demoBox.style.display === 'none') {
+                resetBox(); // Show if hidden
+            } else {
+                demoBox.style.display = 'none'; // Hide if visible
+            }
+        });
+
+        // Event listener for the 'Fade Out' button
+        fadeOutBtn.addEventListener('click', () => {
+            demoBox.style.opacity = '0'; // Start fading out
+            // After the transition, set display to none
+            setTimeout(() => {
+                demoBox.style.display = 'none';
+            }, 500); // Matches the CSS transition duration
+        });
+
+        // Event listener for the 'Slide Up' button
+        slideUpBtn.addEventListener('click', () => {
+            // Set max-height to current scrollHeight to enable transition from current size
+            demoBox.style.maxHeight = demoBox.scrollHeight + 'px';
+            // Trigger reflow to ensure transition works
+            void demoBox.offsetWidth;
+            demoBox.style.maxHeight = '0'; // Slide up
+            demoBox.style.paddingTop = '0'; // Remove padding during slide
+            demoBox.style.paddingBottom = '0'; // Remove padding during slide
+            // After the transition, set display to none
+            setTimeout(() => {
+                demoBox.style.display = 'none';
+                demoBox.style.paddingTop = ''; // Reset padding for next show
+                demoBox.style.paddingBottom = ''; // Reset padding for next show
+            }, 500); // Matches the CSS transition duration
+        });
+
+        // Event listener for the 'Add Class' button
+        addClassBtn.addEventListener('click', () => {
+            demoBox.classList.toggle('bordered'); // Toggle the 'bordered' class
+        });
+
+        // Event listener for the 'Change Color' button
+        changeColorBtn.addEventListener('click', () => {
+            // Toggle between two colors
+            if (demoBox.style.backgroundColor === 'rgb(167, 217, 242)') { // Check for initial blue color
+                demoBox.style.backgroundColor = '#facc15'; // Change to yellow
+            } else {
+                demoBox.style.backgroundColor = '#a7d9f2'; // Change back to blue
+            }
+        });
+
+        // Event listener for the 'Change Text' button
+        changeTextBtn.addEventListener('click', () => {
+            if (demoBox.textContent.trim() === 'hiii have a great day') {
+                demoBox.textContent = 'thank you for visiting this page';
+            } else {
+                demoBox.textContent = 'hiii have a great day';
+            }
+        });
+
+        // Initialize the original height after the page loads
+        window.onload = () => {
+            originalHeight = demoBox.offsetHeight;
+        };
+    </script>
+</body>
+</html>

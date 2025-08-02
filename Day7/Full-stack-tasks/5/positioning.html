@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Different app bars</title>
+    <style>
+        .fixed
+        {
+            bottom: 60px;
+            position: fixed;
+            width: 5vw;
+            height: 10vh;
+            background-color: rgb(228, 240, 9);
+            right: 0;
+            border-radius: 50%;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: rgb(236, 232, 228); width: 200vw; height: 200vh;">
+        <div style="background-color: crimson;bottom: 0; width: 100vw; height: 10vh; position: absolute; text-align: center; font-size: x-large; justify-content: center; align-items: center; display: flex;">This is in absolute position</div>
+        <div style="background-color: rgb(181, 80, 176); top: 0; width: 100vw; height: 10vh; position: sticky; display: flex; text-align: center;justify-content: center; align-items: center">Top bar (sticky)</div>
+        <div class="fixed" style="text-align: center;">Fixed</div>
+    </div>
+
+</body>
+</html>

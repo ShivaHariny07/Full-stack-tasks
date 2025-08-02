@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>District Weather Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e8f0f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+
+    select, .weather {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+
+    .weather {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      min-width: 250px;
+    }
+
+    .weather span {
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Select a District to Get Weather</h2>
+
+<select id="locationSelect">
+  <option value="">-- Choose a district --</option>
+  <option value="Chennai">Chennai</option>
+  <option value="Madurai">Madurai</option>
+  <option value="Coimbatore">Coimbatore</option>
+  <option value="Tirunelveli">Tirunelveli</option>
+  <option value="Trichy">Trichy</option>
+</select>
+
+<div class="weather" id="weatherInfo" style="display:none;">
+  <h3>Weather in <span id="cityName"></span></h3>
+  <span id="temp"></span>
+  <span id="humidity"></span>
+  <span id="condition"></span>
+</div>
+
+<script>
+  const apiKey = "e9cc7102aaf028e15c802dace4ed4ca9"; // Your API key
+
+  document.getElementById("locationSelect").addEventListener("change", function () {
+    const city = this.value;
+    if (!city) return;
+
+    // Fetch weather data
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},IN&appid=${apiKey}&units=metric`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data); // Debug: log response
+
+        if (data.cod !== 200) {
+          alert("Error: " + data.message);
+          return;
+        }
+
+        // Display data
+        document.getElementById("weatherInfo").style.display = "block";
+        document.getElementById("cityName").textContent = city;
+        document.getElementById("temp").textContent = `Temperature: ${data.main.temp} °C`;
+        document.getElementById("humidity").textContent = `Humidity: ${data.main.humidity} %`;
+        document.getElementById("condition").textContent = `Condition: ${data.weather[0].description}`;
+      })
+      .catch(error => {
+        alert("Could not fetch weather. Please check your internet or try again later.");
+        console.error(error);
+      });
+  });
+</script>
+
+</body>
+</html>
