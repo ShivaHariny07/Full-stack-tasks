@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Client Side Storage with Tailwind</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+
+  <div class="bg-white w-full max-w-md rounded-xl shadow-lg p-6">
+    <h2 class="text-2xl font-bold text-center text-indigo-600 mb-6">Client Side Storage Demo</h2>
+
+    <input 
+      id="inputData"
+      type="text"
+      placeholder="Enter some text"
+      class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+    />
+
+    <div class="grid grid-cols-2 gap-3 mb-4">
+      <button onclick="saveToLocal()" class="bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-700 transition">Local Storage</button>
+      <button onclick="saveToSession()" class="bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-700 transition">Session Storage</button>
+      <button onclick="saveToCookie()" class="bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-700 transition">Save as Cookie</button>
+      <button onclick="showStoredData()" class="bg-green-500 text-white py-2 rounded-lg hover:bg-green-700 transition">Show Data</button>
+    </div>
+
+    <div id="output" class="bg-gray-50 border border-gray-300 p-4 rounded-md text-sm text-gray-700">
+      <!-- Output will appear here -->
+    </div>
+  </div>
+
+  <script>
+    // Save to Local Storage
+    function saveToLocal() {
+      const data = document.getElementById("inputData").value;
+      localStorage.setItem("localData", data);
+      alert("Saved to Local Storage!");
+    }
+
+    // Save to Session Storage
+    function saveToSession() {
+      const data = document.getElementById("inputData").value;
+      sessionStorage.setItem("sessionData", data);
+      alert("Saved to Session Storage!");
+    }
+
+    // Save to Cookie
+    function saveToCookie() {
+      const data = document.getElementById("inputData").value;
+      document.cookie = `cookieData=${data}; path=/;`;
+      alert("Saved as Cookie!");
+    }
+
+    // Show all stored data
+    function showStoredData() {
+      const local = localStorage.getItem("localData") || "Not set";
+      const session = sessionStorage.getItem("sessionData") || "Not set";
+      const cookie = document.cookie || "Not set";
+
+      document.getElementById("output").innerHTML = `
+        <p><strong>Local Storage:</strong> ${local}</p>
+        <p><strong>Session Storage:</strong> ${session}</p>
+        <p><strong>Cookies:</strong> ${cookie}</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
