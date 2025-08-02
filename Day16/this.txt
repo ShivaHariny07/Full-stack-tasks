@@ -1,0 +1,49 @@
+Understanding `this` in JavaScript
+
+In JavaScript, arrow functions do not define their own `this`.
+Instead, they capture `this` from the surrounding scope where they are written.
+
+Can arrow functions use `this`?
+
+Yes, but unlike traditional functions, their `this` does not change based on how the function is called.
+It always refers to the value of `this` in the **lexical scope** where the function was created.
+
+Main Difference:
+
+* Regular Function:
+  Think of `this` as a guest — who they are depends on **who invites them (calls them)**.
+  So, the meaning of `this` changes based on how the function is invoked.
+
+* Arrow Function:
+  Think of `this` as a shadow — it stays connected to **where the function was written**,
+  no matter where or how it's used later.
+
+Example:
+
+
+const car = {
+  brand: "Tesla",
+  start: function () {
+    console.log("Starting the car...");
+
+    setTimeout(() => {
+      console.log(`This car is a ${this.brand}`);
+    }, 1000);
+  }
+};
+
+car.start();
+
+
+Output:
+
+Starting the car...
+This car is a Tesla
+
+Explanation:
+
+* The arrow function inside `setTimeout` doesn't get its own `this`.
+* It inherits `this` from the `start` method, which is called on the `car` object.
+* Therefore, `this.brand` refers to "Tesla".
+
+

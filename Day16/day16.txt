@@ -1,0 +1,98 @@
+JavaScript Essentials: Quick Reference Guide
+
+1. Arrow Functions
+
+Arrow functions provide a shorter way to define functions and automatically bind `this` from their surrounding scope.
+
+const add = (a, b) => a + b;
+console.log("Sum using arrow function:", add(2, 3));
+
+const multiply = (a, b) => a * b;
+console.log("Product using arrow function:", multiply(5, 6));
+
+
+2. Object Destructuring
+
+Destructuring makes it easy to extract values from objects into standalone variables.
+
+const user = { name: "Alice", age: 25, city: "Wonderland" };
+const { name, age } = user;
+console.log("Extracted name:", name);
+console.log("Extracted age:", age);
+
+const employee = { id: 21, age: 50, name: "Kumar" };
+const { age: empAge, id: empId } = employee;
+console.log("Employee ID:", empId);
+console.log("Employee Age:", empAge);
+
+
+
+3. Array Methods: `map()` and `filter()`
+
+* `map()` creates a new array by applying a function to every element.
+* `filter()` creates a new array including only elements that pass a condition.
+
+const numbers = [1, 2, 3, 4, 5];
+
+const doubled = numbers.map(num => num * 2);
+console.log("Numbers doubled:", doubled);
+
+const evens = numbers.filter(num => num % 2 === 0);
+console.log("Filtered even numbers:", evens);
+
+
+
+4. Spread Operator (`...`)
+
+Spread syntax allows you to unpack elements or properties into a new array or object.
+
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5];
+
+const mergedArr = arr1.concat(1);
+console.log("Array after concat:", mergedArr);
+
+const extendedArr = [...arr1, 4, 5];
+console.log("Array using spread:", extendedArr);
+
+const fullArr = [...arr1, ...arr2];
+console.log("Merged arrays:", fullArr);
+
+const obj1 = { a: 1, b: 2 };
+const obj2 = { b: 3, c: 4 };
+
+const mergedObj = { ...obj1, ...obj2 }; // obj2 overwrites b
+console.log("Merged object:", mergedObj);
+
+const one = { a: 24, b: 20 };
+const two = { c: 15, d: 50 };
+const combined = { ...one, ...two };
+console.log("Combined object:", combined);
+
+
+
+5. Ternary Operator
+
+A compact way to write `if-else` conditions inline.
+
+const age = 15;
+const category = age >= 58 ? "Senior" : age >= 18 ? "Adult" : "Minor";
+console.log("Category based on age:", category);
+
+const anotherAge = 21;
+const status = anotherAge >= 18 ? "Major" : anotherAge <= 10 ? "Child" : "Baby";
+console.log("Ternary result:", status);
+
+
+6. Template Literals
+
+Backtick strings (`` ` ``) let you embed variables and support multiline strings.
+
+const bird = "crow";
+const animal = undefined;
+
+const apiUrl = `https://api.example.com/search?animal=${animal ?? bird}`;
+console.log("Constructed API URL:", apiUrl);
+
+
+
