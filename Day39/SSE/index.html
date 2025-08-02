@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Server-Sent Events (SSE) Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Server-Sent Events Demo</h1>
+  <div id="output">Waiting for real-time updates...</div>
+
+  <script>
+    // Create a new EventSource connection to the server
+    const eventSource = new EventSource("http://localhost:5000/events");
+
+    // Handle incoming messages
+    eventSource.onmessage = (event) => {
+      const output = document.getElementById("output");
+      output.innerText = `Update: ${event.data}`;
+    };
+
+    // Handle errors (e.g. connection lost)
+    eventSource.onerror = () => {
+      const output = document.getElementById("output");
+      output.innerText = "⚠️ Connection lost. Trying to reconnect...";
+    };
+  </script>
+</body>
+</html>

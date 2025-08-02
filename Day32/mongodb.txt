@@ -1,0 +1,213 @@
+test> use companyDB
+switched to db companyDB
+companyDB> db.employees.insertMany([
+...   { name: "Asha", age: 25, department: "HR", salary: 30000 },
+...   { name: "Rahul", age: 30, department: "Tech", salary: 50000 },
+...   { name: "Divya", age: 28, department: "Tech", salary: 52000 },
+...   { name: "Karan", age: 35, department: "Admin", salary: 40000 },
+...   { name: "Sneha", age: 29, department: "HR", salary: 35000 }
+... ])
+...
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('686163b3e9ca307fe6748a5f'),
+    '1': ObjectId('686163b3e9ca307fe6748a60'),
+    '2': ObjectId('686163b3e9ca307fe6748a61'),
+    '3': ObjectId('686163b3e9ca307fe6748a62'),
+    '4': ObjectId('686163b3e9ca307fe6748a63')
+  }
+}
+companyDB> db.employees.find().pretty()
+[
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a5f'),
+    name: 'Asha',
+    age: 25,
+    department: 'HR',
+    salary: 30000
+  },
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a60'),
+    name: 'Rahul',
+    age: 30,
+    department: 'Tech',
+    salary: 50000
+  },
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a61'),
+    name: 'Divya',
+    age: 28,
+    department: 'Tech',
+    salary: 52000
+  },
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a62'),
+    name: 'Karan',
+    age: 35,
+    department: 'Admin',
+    salary: 40000
+  },
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a63'),
+    name: 'Sneha',
+    age: 29,
+    department: 'HR',
+    salary: 35000
+  }
+]
+companyDB> db.employees.find({ salary: { $gt: 40000 } })
+[
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a60'),
+    name: 'Rahul',
+    age: 30,
+    department: 'Tech',
+    salary: 50000
+  },
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a61'),
+    name: 'Divya',
+    age: 28,
+    department: 'Tech',
+    salary: 52000
+  }
+]
+companyDB> db.employees.find({ age: { $lte: 30 } })
+[
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a5f'),
+    name: 'Asha',
+    age: 25,
+    department: 'HR',
+    salary: 30000
+  },
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a60'),
+    name: 'Rahul',
+    age: 30,
+    department: 'Tech',
+    salary: 50000
+  },
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a61'),
+    name: 'Divya',
+    age: 28,
+    department: 'Tech',
+    salary: 52000
+  },
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a63'),
+    name: 'Sneha',
+    age: 29,
+    department: 'HR',
+    salary: 35000
+  }
+]
+companyDB> db.employees.find({ age: { $gt: 25 }, salary: { $lt: 45000 } })
+[
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a62'),
+    name: 'Karan',
+    age: 35,
+    department: 'Admin',
+    salary: 40000
+  },
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a63'),
+    name: 'Sneha',
+    age: 29,
+    department: 'HR',
+    salary: 35000
+  }
+]
+companyDB> db.employees.find({ $or: [ { department: "HR" }, { salary: { $gt: 45000 } } ] })
+[
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a5f'),
+    name: 'Asha',
+    age: 25,
+    department: 'HR',
+    salary: 30000
+  },
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a60'),
+    name: 'Rahul',
+    age: 30,
+    department: 'Tech',
+    salary: 50000
+  },
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a61'),
+    name: 'Divya',
+    age: 28,
+    department: 'Tech',
+    salary: 52000
+  },
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a63'),
+    name: 'Sneha',
+    age: 29,
+    department: 'HR',
+    salary: 35000
+  }
+]
+companyDB> db.employees.aggregate([
+...   { $group: { _id: "$department", totalSalary: { $sum: "$salary" } } }
+... ])
+...
+[
+  { _id: 'HR', totalSalary: 65000 },
+  { _id: 'Tech', totalSalary: 102000 },
+  { _id: 'Admin', totalSalary: 40000 }
+]
+companyDB> db.employees.aggregate([
+...   { $group: { _id: null, avgSalary: { $avg: "$salary" } } }
+... ])
+...
+[ { _id: null, avgSalary: 41400 } ]
+companyDB> db.employees.aggregate([
+...   { $group: { _id: "$department", count: { $sum: 1 } } }
+... ])
+...
+[
+  { _id: 'HR', count: 2 },
+  { _id: 'Tech', count: 2 },
+  { _id: 'Admin', count: 1 }
+]
+companyDB> use admin
+...
+... db.createUser({
+...   user: "adminUser",
+...   pwd: "securePass123",
+...   roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+... })
+...
+switched to db admin
+admin> use companyDB
+...
+... db.createUser({
+...   user: "employeeUser",
+...   pwd: "empPass123",
+...   roles: [ { role: "readWrite", db: "companyDB" } ]
+... })
+...
+switched to db companyDB
+companyDB> db.employees.find({ salary: { $gt: 40000 } })
+[
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a60'),
+    name: 'Rahul',
+    age: 30,
+    department: 'Tech',
+    salary: 50000
+  },
+  {
+    _id: ObjectId('686163b3e9ca307fe6748a61'),
+    name: 'Divya',
+    age: 28,
+    department: 'Tech',
+    salary: 52000
+  }
+]
+companyDB>

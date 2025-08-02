@@ -1,0 +1,82 @@
+### AUTH API ###
+
+### Test Auth Route
+GET {{base_url}}/auth/test
+
+
+### Signup
+POST {{base_url}}/auth/signup
+Content-Type: application/json
+
+{
+  "firstname": "John",
+  "email": "john@example.com",
+  "password": "123456",
+  "contact": "9876543210"
+}
+
+
+### Login
+POST {{base_url}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "123456"
+}
+
+
+### Logout
+POST {{base_url}}/auth/logout
+Authorization: Bearer {{token}}
+
+
+### Get Current User
+GET {{base_url}}/auth/me
+Authorization: Bearer {{token}}
+
+
+### Protected Route
+GET {{base_url}}/auth/protected
+Authorization: Bearer {{token}}
+
+
+### TRIP API ###
+
+### Create Trip
+POST {{base_url}}/trips
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "type": "Vacation",
+  "destination": "Paris",
+  "days": 5
+}
+
+
+### Get All Trips
+GET {{base_url}}/trips/fetchall
+Authorization: Bearer {{token}}
+
+
+### Get Latest Trip
+GET {{base_url}}/trips/latest
+Authorization: Bearer {{token}}
+
+
+### Update Trip
+PUT {{base_url}}/trips/:id
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "notes": "Pack warm clothes",
+  "packedItems": ["Jacket", "Shoes"],
+  "customItems": ["Camera"]
+}
+
+
+### Delete Trip
+DELETE {{base_url}}/trips/:id
+Authorization: Bearer {{token}}

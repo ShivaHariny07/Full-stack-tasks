@@ -1,0 +1,105 @@
+PS C:\Users\aghas\Desktop\full stack development\tasks\Day33> node server.js
+>> 
+(node:5808) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5808) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server running on port 3000
+MongoDB Connected
+
+POST:
+
+{
+  "name": "Shivani",
+  "age": 21,
+  "subject": "Maths",
+  "marks": 88,
+  "_id": "68617c98f82372eee79e0615",
+  "__v": 0
+}
+
+GET:
+
+[
+  {
+    "_id": "6860f239eb38c7279914b5c1",
+    "name": "Hariny",
+    "age": 20,
+    "subject": "Maths",
+    "marks": 90
+  },
+  {
+    "_id": "6861320ab62a456e3f9bd1bd",
+    "name": "Asha",
+    "age": 21,
+    "subject": "Maths",
+    "marks": 85
+  },
+  {
+    "_id": "68613256b62a456e3f9bd1c1",
+    "name": "Vijay",
+    "age": 21,
+    "subject": "Maths",
+    "marks": 99
+  },
+  {
+    "_id": "686154dd25c3948dd1748a5f",
+    "name": "Mahalakshmi",
+    "age": 21,
+    "subject": "Maths",
+    "marks": 88
+  },
+  {
+    "_id": "686154dd25c3948dd1748a60",
+    "name": "Anjali",
+    "age": 22,
+    "subject": "Physics",
+    "marks": 92
+  },
+  {
+    "_id": "686154dd25c3948dd1748a61",
+    "name": "Kavya",
+    "age": 20,
+    "subject": "Biology",
+    "marks": 91
+  },
+  {
+    "_id": "686154dd25c3948dd1748a62",
+    "name": "Divya",
+    "age": 23,
+    "subject": "Chemistry",
+    "marks": 90
+  },
+  {
+    "_id": "68617c91f82372eee79e0613",
+    "name": "Shivani",
+    "age": 21,
+    "subject": "Maths",
+    "marks": 88,
+    "__v": 0
+  },
+  {
+    "_id": "68617c98f82372eee79e0615",
+    "name": "Shivani",
+    "age": 21,
+    "subject": "Maths",
+    "marks": 88,
+    "__v": 0
+  }
+]
+
+PUT:
+
+{
+  "_id": "68617c98f82372eee79e0615",
+  "name": "Shivani",
+  "age": 21,
+  "subject": "Maths",
+  "marks": 95,
+  "__v": 0
+}
+
+DELETE:
+
+{
+  "message": "Deleted Successfully"
+}

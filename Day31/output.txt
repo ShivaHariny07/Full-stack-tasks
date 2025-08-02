@@ -1,0 +1,144 @@
+test> use studentDB
+switched to db studentDB
+studentDB> db.students.insertMany([
+...   { name: "Shivani", age: 21, subject: "Maths", marks: 88 },
+...   { name: "Anjali", age: 22, subject: "Physics", marks: 92 },
+...   { name: "Kavya", age: 20, subject: "Biology", marks: 85 },
+...   { name: "Divya", age: 23, subject: "Chemistry", marks: 90 }
+... ])
+...
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('686154dd25c3948dd1748a5f'),
+    '1': ObjectId('686154dd25c3948dd1748a60'),
+    '2': ObjectId('686154dd25c3948dd1748a61'),
+    '3': ObjectId('686154dd25c3948dd1748a62')
+  }
+}
+studentDB> db.students.find()
+[
+  {
+    _id: ObjectId('6860f239eb38c7279914b5c1'),
+    name: 'Hariny',
+    age: 20,
+    subject: 'Maths',
+    marks: 90
+  },
+  {
+    _id: ObjectId('6861320ab62a456e3f9bd1bd'),
+    name: 'Asha',
+    age: 21,
+    subject: 'Maths',
+    marks: 85
+  },
+  {
+    _id: ObjectId('6861323db62a456e3f9bd1bf'),
+    name: 'Divya',
+    age: 21,
+    subject: 'Maths',
+    marks: 89
+  },
+  {
+    _id: ObjectId('68613256b62a456e3f9bd1c1'),
+    name: 'Vijay',
+    age: 21,
+    subject: 'Maths',
+    marks: 99
+  },
+  {
+    _id: ObjectId('686154dd25c3948dd1748a5f'),
+    name: 'Shivani',
+    age: 21,
+    subject: 'Maths',
+    marks: 88
+  },
+  {
+    _id: ObjectId('686154dd25c3948dd1748a60'),
+    name: 'Anjali',
+    age: 22,
+    subject: 'Physics',
+    marks: 92
+  },
+  {
+    _id: ObjectId('686154dd25c3948dd1748a61'),
+    name: 'Kavya',
+    age: 20,
+    subject: 'Biology',
+    marks: 85
+  },
+  {
+    _id: ObjectId('686154dd25c3948dd1748a62'),
+    name: 'Divya',
+    age: 23,
+    subject: 'Chemistry',
+    marks: 90
+  }
+]
+studentDB> db.students.updateOne(
+...   { name: "Kavya" },
+...   { $set: { marks: 91 } }
+... )
+...
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+studentDB> db.students.deleteOne({ name: "Divya" })
+{ acknowledged: true, deletedCount: 1 }
+studentDB> db.students.find()
+[
+  {
+    _id: ObjectId('6860f239eb38c7279914b5c1'),
+    name: 'Hariny',
+    age: 20,
+    subject: 'Maths',
+    marks: 90
+  },
+  {
+    _id: ObjectId('6861320ab62a456e3f9bd1bd'),
+    name: 'Asha',
+    age: 21,
+    subject: 'Maths',
+    marks: 85
+  },
+  {
+    _id: ObjectId('68613256b62a456e3f9bd1c1'),
+    name: 'Vijay',
+    age: 21,
+    subject: 'Maths',
+    marks: 99
+  },
+  {
+    _id: ObjectId('686154dd25c3948dd1748a5f'),
+    name: 'Shivani',
+    age: 21,
+    subject: 'Maths',
+    marks: 88
+  },
+  {
+    _id: ObjectId('686154dd25c3948dd1748a60'),
+    name: 'Anjali',
+    age: 22,
+    subject: 'Physics',
+    marks: 92
+  },
+  {
+    _id: ObjectId('686154dd25c3948dd1748a61'),
+    name: 'Kavya',
+    age: 20,
+    subject: 'Biology',
+    marks: 91
+  },
+  {
+    _id: ObjectId('686154dd25c3948dd1748a62'),
+    name: 'Divya',
+    age: 23,
+    subject: 'Chemistry',
+    marks: 90
+  }
+]
+studentDB>
